@@ -1,0 +1,10 @@
+https://lnx.azurewebsites.net/azure-resource-manager-api-calls-from-python/
+
+https://docs.microsoft.com/en-us/rest/api/appservice/certificates/list -> webapp
+
+https://github.com/Azure/azure-sdk-for-python
+
+https://docs.microsoft.com/en-us/rest/api/appservice/appservicecertificateorders/list?view=azurecosmosdbcfp-1.0.0#code-try-0 -> app service cert
+
+-------------------------------------
+pip install requests adal
