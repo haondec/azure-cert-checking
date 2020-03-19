@@ -1,0 +1,65 @@
+[
+  {
+    "id": "/subscriptions/b5096c43-e0e8a0003b/resourceGroups/Certs-xxx/providers/Microsoft.CertificateRegistration/certificateOrders/xxx",
+    "name": "xxx",
+    "type": "certificateOrders",
+    "location": "global",
+    "properties": {
+      "certificates": {
+        "xxxx": {
+          "keyVaultId": "/subscriptions/xxx",
+          "keyVaultSecretName": "bvvvvkbk",
+          "provisioningState": "Succeeded"
+        }
+      },
+      "distinguishedName": "CN=xxxx",
+      "domainVerificationToken": "cddadvdvdv",
+      "validityInYears": 1,
+      "keySize": 2048,
+      "productType": "StandardDomainValidatedSsl",
+      "autoRenew": true,
+      "status": "Issued",
+      "signedCertificate": {
+        "version": 3,
+        "serialNumber": "fvfdzvzfdfs",
+        "thumbprint": "sfvdsvdsvfsvFr",
+        "subject": "CN=xxxx, OU=Domain Control Validated",
+        "notBefore": "2019-07-19T16:16:27+00:00",
+        "notAfter": "2020-07-19T16:16:27+00:00",
+        "signatureAlgorithm": "sha256RSA",
+        "issuer": "CN=Go Daddy Secure Certificate Authority - G2, OU=http://certs.godaddy.com/repository/, O=\"GoDaddy.com, Inc.\", L=Scottsdale, S=Arizona, C=US",
+        "rawData": "-----BEGIN CERTIFICATE-----"
+      },
+      "csr": "-----BEGIN NEW CERTIFICATE REQUEST-----\r\nnMIHko2PpLk0U9qbxhHlfSrC6Pu1Yptewdehpvq9rmfJxL4Cw==\r\n-----END NEW CERTIFICATE REQUEST-----\r\n",
+      "intermediate": {
+        "version": 3,
+        "serialNumber": "07",
+        "thumbprint": "dvadvarb",
+        "subject": "CN=Go Daddy Secure Certificate Authority - G2, OU=http://certs.godaddy.com/repository/, O=\"GoDaddy.com, Inc.\", L=Scottsdale, S=Arizona, C=US",
+        "notBefore": "2011-05-03T07:00:00+00:00",
+        "notAfter": "2031-05-03T07:00:00+00:00",
+        "signatureAlgorithm": "sha256RSA",
+        "issuer": "CN=Go Daddy Root Certificate Authority - G2, O=\"GoDaddy.com, Inc.\", L=Scottsdale, S=Arizona, C=US",
+        "rawData": "-----BEGIN CERTIFICATE-----"
+      },
+      "root": {
+        "version": 3,
+        "serialNumber": "00",
+        "thumbprint": "ygivyilfgyfv,yidte76rrikfky.l",
+        "subject": "CN=Go Daddy Root Certificate Authority - G2, O=\"GoDaddy.com, Inc.\", L=Scottsdale, S=Arizona, C=US",
+        "notBefore": "2009-09-01T00:00:00+00:00",
+        "notAfter": "2037-12-31T23:59:59+00:00",
+        "signatureAlgorithm": "sha256RSA",
+        "issuer": "CN=Go Daddy Root Certificate Authority - G2, O=\"GoDaddy.com, Inc.\", L=Scottsdale, S=Arizona, C=US",
+        "rawData": "-----BEGIN CERTIFICATE-----"
+      },
+      "serialNumber": "75654567890",
+      "lastCertificateIssuanceTime": "2019-07-19T16:16:46.3746693",
+      "expirationTime": "2020-07-19T16:16:27",
+      "isPrivateKeyExternal": false,
+      "appServiceCertificateNotRenewableReasons": [
+        "ExpirationNotInRenewalTimeRange"
+      ]
+    }
+  }
+]
