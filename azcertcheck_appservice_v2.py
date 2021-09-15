@@ -30,11 +30,11 @@ client_secret = os.environ['CLIENT_SECRET']
 subscription_id = os.environ['SUBSCRIPTION_ID']
 
 # Setting day remaining to alert
-date_remaining = 500
+date_remaining = 90
 #-----------------------------------------------------------------
 # Create CSV
 fieldnames = ['cert_name', 'status', 'expiration_date']
-certs_csv_writer = csv.DictWriter(open('cert_azure_list.csv', mode='w'), fieldnames=fieldnames)
+certs_csv_writer = csv.DictWriter(open('cert_azure_list_warning.csv', mode='w'), fieldnames=fieldnames)
 certs_csv_writer.writeheader()
 # Create dictionary
 row_crt = dict()
@@ -49,7 +49,7 @@ token = context.acquire_token_with_client_credentials(resource, client_id, clien
 
 # Request GET
 headers = {'Authorization': 'Bearer ' + token['accessToken']}
-params = {'api-version': '2015-08-01'}
+params = {'api-version': '2019-08-01'}
 url = 'https://management.azure.com/subscriptions/' + subscription_id + '/providers/Microsoft.CertificateRegistration/certificateOrders'
 # Run GET
 r = requests.get(url, headers=headers, params=params)
@@ -71,6 +71,11 @@ def days_between_now(d):
 list_expired = []
 list_warning = []
 for i in range(len(parse_data['value'])):
+    # Uncheck cert invalid
+    if 'properties' not in parse_data['value'][i]:
+        continue
+    if 'expirationTime' not in parse_data['value'][i]['properties']:
+        continue
     # Get date expired
     date_expired = parse_data['value'][i]['properties']['expirationTime']
     status = parse_data['value'][i]['properties']['status']
@@ -91,18 +96,16 @@ for i in range(len(parse_data['value'])):
 
 # Generate message
 if len(list_expired) == 0 and  len(list_warning) == 0:
-    print("No cert expired or nearly expired")
+    print("No cert expired or nearly expiring.")
     exit()
 
 # List expired
 out = "List expired: " + str(len(list_expired))
 message += out + "\n"
 # Console out
-print(out)
 for i in list_expired:
     out = "- App Certificate: " + parse_data['value'][i]['name'] + " | " + parse_data['value'][i]['properties']['expirationTime']
     message += out + "\n"
-    print(out)
 
 # List warning
 out = "List warning: " + str(len(list_warning))
@@ -112,7 +115,6 @@ for i in list_warning:
     diff_day = days_between_now(parse_data['value'][i]['properties']['expirationTime'])
     out = "- App Certificate: " + parse_data['value'][i]['name'] + " | " + parse_data['value'][i]['properties']['expirationTime'] + " | " + str(diff_day) + " days remaining"
     message += out + "\n"
-    print(out)
 
 # Send mail
 if sendmail_enable:
